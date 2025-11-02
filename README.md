@@ -3,6 +3,19 @@
 Questo repository contiene una raccolta completa di **template, moduli e script** per controllare **Gig Performer** tramite **[Open Stage Control](https://openstagecontrol.ammd.net/)**.  
 L’obiettivo è fornire un set di strumenti pronti per creare **superfici di controllo OSC personalizzate** per l’uso live e in studio.
 
+Modalità per display con risoluzione 1000 x 760
+
+<img width="993" height="749" alt="image" src="https://github.com/user-attachments/assets/fcfa1a5e-217b-4836-9e60-5da358dcc0e2" />
+
+Modalità per display con risoluzione 1000 x 580  Display 5inch
+
+<img width="989" height="571" alt="image" src="https://github.com/user-attachments/assets/f2d7d2e5-256c-4764-bf83-839984c44a83" />
+
+Modalità per display con risoluzione 420 x 580  Display portrait
+
+<img width="414" height="948" alt="image" src="https://github.com/user-attachments/assets/cd7b00e0-e276-4a2b-b946-5a104c9843e8" />
+
+
 ---
 
 ## Cos’è Open Stage Control
