@@ -23,20 +23,25 @@ Puoi eseguire Open Stage Control come **server** sul tuo computer e connetterti 
 La struttura del repository è la seguente:
 ```
 /assets
-├── css / images / themes
-│ Contiene temi personalizzati e risorse grafiche per l’interfaccia.
+├── /themes
+│ Contiene temi personalizzati e risorse grafiche per l’interfaccia 
 
 /config
 ├── Esempi di file di configurazione .json
 │ Utili per impostare porte OSC, temi e moduli personalizzati.
 
+
+
 /GPscript
 ├── Script helper per Gig Performer.
 │ - Uno degli script consente di generare automaticamente la lista dei Rackspaces,
 │ da inviare come elenco al controllo lista di Open Stage Control.
+| Keboard.gpscript ( Per oggetto tastiera MIDI)
+| RackPartList.gpscript   ( helper functions)
 
 /GPTemplate
 ├── Modello di interfaccia base per testare la comunicazione con Gig Performer.
+| Control_Board.gig
 
 /Modules
 ├── setlist.js
@@ -69,17 +74,39 @@ La struttura del repository è la seguente:
    - Doppio clic sul file eseguibile  
    - Oppure via terminale:
      ```bash
-     npx open-stage-control
+     open-stage-control
      ```
 
-3. **Carica un template**:
+<img width="937" height="309" alt="image" src="https://github.com/user-attachments/assets/0991c3a9-42c6-484a-ada1-dd851cd8418a" />
+
+3. **Configurazione**
+   -
+   - **send**  IP:PORT  parametri del servere IP e PORT , dipende dove è localizzato il server. In questo esempio il server è eseguito nella
+     stesso computer dove è in esecuzione GiG performer
+   - **port** Porta del server Open Stage Control
+   - **theme** percorsi dei temi personalizzati. 
+     Esempio 
+     ```
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\my_theme.css 
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\ace-tm.css
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\ace_editor.css
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\widget.css     ```
+
+**Nota**
+Nel caso di più file devono essere inseriti in un unica riga con un spazion di delimitazione 
+
+4. **Carica un template**:
    - Vai su **Load**
    - Seleziona uno dei file `.json` presenti in `/Release`
    - (Facoltativo) Specifica un file di configurazione `.json` da `/config`
 
-4. **Imposta le porte OSC**  
-   - In **Gig Performer**, abilita il controllo **OSC**  
-   - Imposta la **porta ricezione** e **invio** corrispondenti (es. `127.0.0.1:11000`)
+5. **custom-module**
+   - Vai su **Load**
+   - Seleziona il file `setlist.js` presenti in `/Modules`
+  
+   
+6. **osc-port**
+   - Porta di ricezione messaggi OSC  
 
 ---
 
