@@ -109,6 +109,39 @@ Nel caso di più file devono essere inseriti in un unica riga con un spazion di 
 6. **osc-port**
    - Porta di ricezione messaggi OSC   (Remote Client Port)
 
+7.**Avvio del server**
+Per avviare il server usare il tasto freccia in alto a sinistra o premere F5
+Ci sono alcune opzioni presenti nel menù per configurare l'avvio indicate nel menù Launcher
+<img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/b82a5bac-ba18-4987-a661-25355cbb752b" />
+
+8. **Modalità di visualizzazione**
+Si può decidere di avviare il server senza visualizzazione 
+  - impostazione **no-gui** abilita il "browser" interno di open stage
+  - Visualizzare in fullscreen impostazione **fullscreen**
+
+Si può visualzziare il template da un browser esterno con l'indirizzo
+http://127.0.0.1:8080/
+
+<img width="940" height="587" alt="image" src="https://github.com/user-attachments/assets/eaf91998-299f-4500-b48b-5ae47ef9c249" />
+
+
+Per dettagli ed altri impostazioni si può accceder alla documentazione localmente 
+
+<img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/5d32e140-f959-474c-9aeb-ecb36fb445e6" />
+
+**Nota**
+Sia nella vista configurazione e modalità 
+
+Oppure alle risorse ufficiali del progetto
+**Open Stage Control**  
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/af59a415-e761-4f08-ab43-068c2fd5a88b" />
+
+Libre and modular OSC / MIDI controller  
+
+Website: https://openstagecontrol.ammd.net/   
+Forum: https://openstagecontrol.discourse.group/    
+IRC: Libera.chat #openstagecontrol    
+
 ---
 
 ## Utilizzo con Gig Performer
@@ -121,6 +154,7 @@ Esempio di configurazione
 
 <img width="669" height="245" alt="image" src="https://github.com/user-attachments/assets/674b2291-a22d-482f-82d3-99c0b41a167a" />
 
+Nella risorsa  \GPTemplate\Control_Board.gig  c'è un file completo per testare la soluzione 
   
 Lo script in `/GPscript` deve essere importato in Gig Performer come **Helper Function**, per generare automaticamente liste dinamiche (ad esempio l’elenco dei Rackspaces), utilizzabili nei controlli lista di Open Stage Control.
  ```
