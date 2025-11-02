@@ -81,9 +81,10 @@ La struttura del repository è la seguente:
 
 3. **Configurazione**
    -
-   - **send**  IP:PORT  parametri del servere IP e PORT , dipende dove è localizzato il server. In questo esempio il server è eseguito nella
-     stesso computer dove è in esecuzione GiG performer
-   - **port** Porta del server Open Stage Control
+   - **send**  IP:PORT  parametri del servere IP e PORT  , dipende dove è localizzato il server.
+     In questo esempio il server è eseguito nello stesso computer dove è in esecuzione GiG performer, quindi utilizzo indirizzo Ip loopback
+     
+   - **port** Porta del server Open Stage Control ( GiG Performer Listenning Port) 
    - **theme** percorsi dei temi personalizzati. 
      Esempio 
      ```
@@ -106,7 +107,7 @@ Nel caso di più file devono essere inseriti in un unica riga con un spazion di 
   
    
 6. **osc-port**
-   - Porta di ricezione messaggi OSC  
+   - Porta di ricezione messaggi OSC   (Remote Client Port)
 
 ---
 
@@ -115,8 +116,48 @@ Nel caso di più file devono essere inseriti in un unica riga con un spazion di 
 I template sono progettati per interagire con Gig Performer attraverso **messaggi OSC bidirezionali**.  
 - Puoi inviare comandi a Gig Performer per cambiare **rackspace, variazioni o song parts**.  
 - Puoi ricevere dati di stato (rack attivo, parametri, nomi, ecc.) e visualizzarli sull’interfaccia.
+**Configurazione OSC**
+Esempio di configurazione
 
-Lo script in `/GPscript` può essere importato in Gig Performer come **Helper Function**, per generare automaticamente liste dinamiche (ad esempio l’elenco dei Rackspaces), utilizzabili nei controlli lista di Open Stage Control.
+<img width="669" height="245" alt="image" src="https://github.com/user-attachments/assets/674b2291-a22d-482f-82d3-99c0b41a167a" />
+
+  
+Lo script in `/GPscript` deve essere importato in Gig Performer come **Helper Function**, per generare automaticamente liste dinamiche (ad esempio l’elenco dei Rackspaces), utilizzabili nei controlli lista di Open Stage Control.
+ ```
+/******************************************************
+//
+// Rackspace Script
+//
+******************************************************/
+
+
+On activate
+	var index,v,cnt: int
+	var name,vart,part: string
+	
+	index= GetCurrentRackspaceIndex()
+	cnt=  GetVariationCountForRackspaceAtIndex(index)
+    SendOSCMessage{ /StartPart}
+	For v = 0; v < cnt; v = v + 1 Do
+		//statements here
+		vart=  GetVariationNameForRackspaceAtIndex(index,v)
+		Print("Var name " + vart)
+		part="/Part" + v +"Name"
+		SendOSCMessage{ part,vart}
+	end 	
+
+	
+	
+End
+
+On variation ( oldVariation : integer, newVariation : integer)
+   // Called when you switch to another variation
+   SendOSCMessage{ /SelectVar, newVariation}
+end
+
+ 
+ ```
+
 
 ---
 
