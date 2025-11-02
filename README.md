@@ -1,144 +1,252 @@
 #  Open Stage Control Templates for Gig Performer
 
-Questo repository contiene una raccolta completa di **template, moduli e script** per controllare **Gig Performer** tramite **[Open Stage Control](https://openstagecontrol.ammd.net/)**.  
-L’obiettivo è fornire un set di strumenti pronti per creare **superfici di controllo OSC personalizzate** per l’uso live e in studio.
+This repository contains a complete collection of **templates, modules, and scripts** to control **Gig Performer** using **[Open Stage Control](https://openstagecontrol.ammd.net/)**.  
+The goal is to provide a ready-to-use toolkit for building **custom OSC control surfaces** for live and studio use.
+
+Mode for display with resolution 1000 x 760
+
+<img width="993" height="749" alt="image" src="https://github.com/user-attachments/assets/fcfa1a5e-217b-4836-9e60-5da358dcc0e2" />
+
+Mode for display with resolution 1000 x 580 (5-inch display)
+
+<img width="989" height="571" alt="image" src="https://github.com/user-attachments/assets/f2d7d2e5-256c-4764-bf83-839984c44a83" />
+
+Mode for display with resolution 420 x 580 (portrait display)
+
+<img width="414" height="948" alt="image" src="https://github.com/user-attachments/assets/cd7b00e0-e276-4a2b-b946-5a104c9843e8" />
+
 
 ---
 
-## Cos’è Open Stage Control
+## What is Open Stage Control
 
-**Open Stage Control** è un’applicazione open-source (basata su Electron e Node.js) che consente di creare **interfacce grafiche interattive** per controllare software audio e video tramite **OSC** o **MIDI**.  
-È completamente personalizzabile e funziona su:
+**Open Stage Control** is an open-source application (based on Electron and Node.js) that allows you to create **interactive graphic interfaces** to control audio and video software via **OSC** or **MIDI**.  
+It is fully customizable and works on:
 - **Windows**
 - **macOS**
 - **Linux**
 - **Raspberry Pi**
 
-Puoi eseguire Open Stage Control come **server** sul tuo computer e connetterti con qualsiasi **browser** (PC, tablet o smartphone) come **client**.
+You can run Open Stage Control as a **server** on your computer and connect from any **browser** (PC, tablet, or smartphone) as a **client**.
 
 ---
 
-## Struttura del progetto
+## Project structure
 
-La struttura del repository è la seguente:
+The repository structure is as follows:
+
+
 ```
 /assets
-├── css / images / themes
-│ Contiene temi personalizzati e risorse grafiche per l’interfaccia.
+├── /themes
+│ Contains custom themes and graphic resources for the interface
 
 /config
-├── Esempi di file di configurazione .json
-│ Utili per impostare porte OSC, temi e moduli personalizzati.
+├── Example .json configuration files
+│ Useful for setting up OSC ports, themes, and custom modules.
 
 /GPscript
-├── Script helper per Gig Performer.
-│ - Uno degli script consente di generare automaticamente la lista dei Rackspaces,
-│ da inviare come elenco al controllo lista di Open Stage Control.
+├── Helper scripts for Gig Performer.
+│ - One of the scripts automatically generates the list of Rackspaces,
+│ which can be sent as a list to an Open Stage Control widget.
+| Keboard.gpscript (for the MIDI Keyboard object)
+| RackPartList.gpscript (helper functions)
 
 /GPTemplate
-├── Modello di interfaccia base per testare la comunicazione con Gig Performer.
+├── Base interface template for testing communication with Gig Performer.
+| Control_Board.gig
 
 /Modules
 ├── setlist.js
-│ Modulo JavaScript con tutte le funzioni necessarie per:
-│ - Gestire setlist e liste dinamiche
-│ - Rilevare IP e porta del client
-│ - Sincronizzare controlli e dati OSC
-│ - Gestire i buffer di rack, song e setlist
+│ JavaScript module containing all the functions needed to:
+│ - Manage setlists and dynamic lists
+│ - Detect client IP and port
+│ - Synchronize OSC data between server and client
+│ - Manage rack, song, and setlist buffers
 
 /Release
 ├── Template_full_r1
-│ Interfaccia completa per schermi da 10"+ (desktop o tablet)
+│ Full interface for 10"+ screens (desktop or tablet)
 ├── Template_tiny_r1
-│ Versione ottimizzata per display da 5" (es. Raspberry Pi)
+│ Optimized version for 5" displays (e.g., Raspberry Pi)
 ├── Template_Portrait_r1
-│ Layout verticale per smartphone
-
+│ Vertical layout for smartphones
 ```
 
 
 
 ---
 
-## Installazione
+## Installation
 
-1. **Scarica Open Stage Control**  
+1. **Download Open Stage Control**  
    👉 [https://github.com/jean-emmanuel/open-stage-control/releases](https://github.com/jean-emmanuel/open-stage-control/releases)
 
-2. **Avvia il server** su Windows, macOS o Linux:
-   - Doppio clic sul file eseguibile  
-   - Oppure via terminale:
+2. **Start the server** on Windows, macOS, or Linux:
+   - Double-click the executable file  
+   - Or via terminal:
      ```bash
-     npx open-stage-control
+     open-stage-control
      ```
 
-3. **Carica un template**:
-   - Vai su **Load**
-   - Seleziona uno dei file `.json` presenti in `/Release`
-   - (Facoltativo) Specifica un file di configurazione `.json` da `/config`
+<img width="937" height="309" alt="image" src="https://github.com/user-attachments/assets/0991c3a9-42c6-484a-ada1-dd851cd8418a" />
 
-4. **Imposta le porte OSC**  
-   - In **Gig Performer**, abilita il controllo **OSC**  
-   - Imposta la **porta ricezione** e **invio** corrispondenti (es. `127.0.0.1:11000`)
+3. **Configuration**
+   -
+   - **send**  IP:PORT  server parameters  
+     In this example, the server runs on the same computer as Gig Performer, so the loopback address is used.
+     
+   - **port** Open Stage Control server port (Gig Performer listening port)  
+   - **theme** Paths to the custom theme files.
+     
+     Add the following styles to use the custom template:
+     ```
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\my_theme.css 
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\ace-tm.css
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\ace_editor.css
+     C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\widget.css
+     ```
+
+**Note:**  
+The files must be listed on a single line, separated by spaces.
+
+4. **Load a template**:
+   - Go to **Load**
+   - Select one of the `.json` files from `/Release`
+   - (Optional) Specify a `.json` configuration file from `/config`
+
+5. **Custom module**
+   - Go to **Load**
+   - Select the `setlist.js` file located in `/Modules`
+     
+6. **osc-port**
+   - Receiving port for OSC messages (Remote Client Port)
+   
+7. **Start the server**  
+   - Use the **arrow button** in the top-left corner or press **F5**
+   - Additional startup options are available under the **Launcher** menu
+
+	<img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/b82a5bac-ba18-4987-a661-25355cbb752b" />
+
+9. **Display mode**
+   - The **no-gui** option enables the internal Open Stage Control browser
+   - To display in fullscreen, enable **fullscreen**
+
+You can view the template from an external browser using:  
+http://127.0.0.1:8080/
+
+<img width="940" height="587" alt="image" src="https://github.com/user-attachments/assets/eaf91998-299f-4500-b48b-5ae47ef9c249" />
+
+For more details and configuration options, you can access the local documentation:
+
+<img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/5d32e140-f959-474c-9aeb-ecb36fb445e6" />
+
+Official project resources:  
+**Open Stage Control**  
+<img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/af59a415-e761-4f08-ab43-068c2fd5a88b" />
+
+Libre and modular OSC / MIDI controller  
+
+Website: https://openstagecontrol.ammd.net/  
+Forum: https://openstagecontrol.discourse.group/  
+IRC: Libera.chat #openstagecontrol  
 
 ---
 
-## Utilizzo con Gig Performer
+## Usage with Gig Performer
 
-I template sono progettati per interagire con Gig Performer attraverso **messaggi OSC bidirezionali**.  
-- Puoi inviare comandi a Gig Performer per cambiare **rackspace, variazioni o song parts**.  
-- Puoi ricevere dati di stato (rack attivo, parametri, nomi, ecc.) e visualizzarli sull’interfaccia.
+The templates are designed to interact with Gig Performer through **bidirectional OSC messages**.  
+- You can send commands to Gig Performer to switch **rackspaces, variations, or song parts**.  
+- You can receive status data (active rack, parameters, names, etc.) and display it on the interface.
 
-Lo script in `/GPscript` può essere importato in Gig Performer come **Helper Function**, per generare automaticamente liste dinamiche (ad esempio l’elenco dei Rackspaces), utilizzabili nei controlli lista di Open Stage Control.
+**OSC configuration**  
+Example setup:
+
+<img width="669" height="245" alt="image" src="https://github.com/user-attachments/assets/674b2291-a22d-482f-82d3-99c0b41a167a" />
+
+> The resource \GPTemplate\Control_Board.gig includes a complete test file.
+
+The scripts in `/GPscript` must be imported into Gig Performer as **Helper Functions** to automatically generate the dynamic list of rackspaces used in Open Stage Control list widgets.
+ 
+ 
+```
+/******************************************************
+//
+// Rackspace Script
+//
+******************************************************/
+
+
+On activate
+	var index,v,cnt: int
+	var name,vart,part: string
+	
+	index= GetCurrentRackspaceIndex()
+	cnt=  GetVariationCountForRackspaceAtIndex(index)
+    SendOSCMessage{ /StartPart}
+	For v = 0; v < cnt; v = v + 1 Do
+		//statements here
+		vart=  GetVariationNameForRackspaceAtIndex(index,v)
+		Print("Var name " + vart)
+		part="/Part" + v +"Name"
+		SendOSCMessage{ part,vart}
+	end 	
+
+	
+	
+End
+
+On variation ( oldVariation : integer, newVariation : integer)
+   // Called when you switch to another variation
+   SendOSCMessage{ /SelectVar, newVariation}
+end
+
+ 
+```
+
 
 ---
 
-## Modulo personalizzato (`setlist.js`)
+## Custom module (`setlist.js`)
 
-Il file `/Modules/setlist.js` contiene tutte le funzioni necessarie a:
-- Gestire buffer di **Setlist, Song e Rackspace**
-- Sincronizzare dati OSC tra server e client
-- Identificare **IP** e **porta** dei client connessi
-- Gestire comandi in ingresso e aggiornare i controlli dell’interfaccia
+The `/Modules/setlist.js` file contains all the necessary functions to:
+- Manage **Setlist, Song, and Rackspace** buffers
+- Synchronize OSC data between server and client
+- Detect connected clients' **IP** and **port**
+- Handle incoming commands and update interface widgets
+- Generate album cover images using the artist name  
+  > Example: [COVER] Request: https://itunes.apple.com/search?term=Kiss&entity=musicTrack&limit=1
 
-Il modulo può essere caricato tramite la sezione **Custom Module** nelle impostazioni di Open Stage Control.
-
----
-
-##  Temi e interfacce
-
-I file CSS inclusi in `/assets/themes` permettono di personalizzare completamente l’aspetto grafico dei template, adattandoli al tipo di display e all’ambiente operativo (dark/light mode, dispositivi touch, ecc.).
+The module must be loaded through the **Custom Module** section in Open Stage Control’s settings.
 
 ---
 
-## Requisiti
+## Themes and interfaces
 
-- **Gig Performer 4 o successivo**  
-- **Open Stage Control 1.19+**  
-- **Connessione locale** (Wi-Fi o Ethernet)
-- (Facoltativo) **Node.js** se si desidera avviare O.S.C. da terminale
+The CSS files included in `/assets/themes` allow full customization of the templates’ visual appearance, adapting them to display type and environment (dark/light mode, touch devices, etc.).
 
 ---
 
-## Consigli
+## Requirements
 
-- Usa il template `Template_full_r1` per test e setup completi.  
-- Il template `Template_tiny_r1` è ideale per schermi da 5” come i display Raspberry Pi.  
-- Il `Template_Portrait_r1` è ottimizzato per smartphone, utile come controllo remoto rapido.
-
----
-
-## 🧑‍💻 Autore
-
-**Domenico Patella**  
-🎧 Creatore di template per performance live e sviluppatore di strumenti per Open Stage Control e Gig Performer.  
-YouTube: [STRANGER MIX](https://www.youtube.com/@strangermix)
+- **Gig Performer 4 or later**  
+- **Open Stage Control 1.29+**  
+- **Local network connection** (Wi-Fi or Ethernet)  
+- (Optional) **Node.js** if you want to launch O.S.C. from the terminal
 
 ---
 
-## 📜 Licenza
+## Tips
 
-Questo progetto è distribuito sotto licenza **MIT**.  
-Puoi utilizzare, modificare e ridistribuire liberamente i file citando la fonte originale.
+- Use the `Template_full_r1` for full setup and testing.  
+- The `Template_tiny_r1` is ideal for 5” screens like Raspberry Pi displays.  
+- The `Template_Portrait_r1` is optimized for smartphones — great for quick remote control.
+
+---
+
+## 📜 License
+
+This project is distributed under the **MIT License**.  
+You are free to use, modify, and redistribute the files, provided you credit the original source.
 
 ---
