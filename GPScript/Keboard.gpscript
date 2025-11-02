@@ -1,0 +1,50 @@
+/******************************************************
+//
+// Scriptlet
+//
+// 
+******************************************************/
+var
+Enable : Discrete Parameter "Off", "On"="Off"
+note : int
+ch : int
+vel: int
+
+
+Initialization
+	SetDisplayMessage ("Helper func for Control Surface [Keyboard]")
+End
+
+
+On NoteOnEvent(m : NoteMessage)
+	
+	
+	note= GetNoteNumber(m)
+	ch= GetChannel(m)
+	vel = GetVelocity(m)
+	
+	If Enable == "On"  Then
+		SendOSCMessage { /Keyboard,note, 1 }
+		SendOSCMessage { /Keyboard_ch,ch }
+		SendOSCMessage { /Keyboard_vel,vel }
+		SendOSCMessage { /Keyboard_plot,0,vel }
+		
+	end	
+	
+	
+End
+
+On NoteOffEvent(m : NoteMessage)
+	
+	If Enable == "On"  Then
+		note= GetNoteNumber(m)
+		SendOSCMessage { /Keyboard,note, 0 }
+		SendOSCMessage { /Keyboard_vel,vel }
+		SendOSCMessage { /Keyboard_plot,0,vel }
+	end
+
+End
+
+
+
+

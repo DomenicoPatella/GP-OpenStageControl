@@ -1,0 +1,32 @@
+/******************************************************
+//
+// Rackspace Script
+//
+******************************************************/
+
+
+On activate
+	var index,v,cnt: int
+	var name,vart,part: string
+	
+	index= GetCurrentRackspaceIndex()
+	cnt=  GetVariationCountForRackspaceAtIndex(index)
+    SendOSCMessage{ /StartPart}
+	For v = 0; v < cnt; v = v + 1 Do
+		//statements here
+		vart=  GetVariationNameForRackspaceAtIndex(index,v)
+		Print("Var name " + vart)
+		part="/Part" + v +"Name"
+		SendOSCMessage{ part,vart}
+	end 	
+
+	
+	
+End
+
+On variation ( oldVariation : integer, newVariation : integer)
+   // Called when you switch to another variation
+   SendOSCMessage{ /SelectVar, newVariation}
+end
+
+ 

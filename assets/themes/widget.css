@@ -1,0 +1,126 @@
+.bck{
+   
+   background-image: url(img/native-instruments-maschine-mk3-kontrol-cihazi-33678-74-O.webp);
+   background-size: contain;   /* oppure cover */
+   background-repeat: no-repeat;
+   background-position: center;
+
+    
+
+}
+
+/* stile personalizzato per un fader verticale */
+.myFader {
+   background: url(img/SliderThumb01/Slider.png) no-repeat center center;
+  background-size: 100%;
+  border: none;
+  border-radius: 0;
+  position: absolute;
+  left: 50%;    /* centrato orizzontalmente, puoi cambiare */
+  transform: translateX(-50%); 
+  width: 40%;   /* larghezza relativa */
+  height: 40%;   /* altezza relativa */
+  pointer-events: none;
+
+}
+
+.fader-container canvas, .knob-container canvas, .encoder-container canvas, .range-container canvas{
+   
+    opacity: 0.7;
+}
+
+
+
+.myRotary {
+  width: 77px;
+  height: 77px;
+  position: absolute;
+  left: 50%;    /* centrato orizzontalmente, puoi cambiare */
+  transform: translateX(-50%); 
+  background-image: url(img/control_knob/spritesheet.png);
+  background-repeat: no-repeat;
+ 
+}
+
+.myRotary140 {
+  width: 108px;
+  height: 108px;
+  position: absolute;
+  left: 50%;    /* centrato orizzontalmente, puoi cambiare */
+  transform: translateX(-50%); 
+  background-image: url(img/control_knob/spritesheet140.png);
+  background-repeat: no-repeat;
+ 
+}
+
+
+/* !! Knob and encoder canvas are disabled*/
+.knob-container canvas, .encoder-container canvas {
+   opacity: -1;
+}  
+
+/* 
+.myButton {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  left: 50%;   
+  transform: translateX(-50%); 
+  background-image: url(img/Button03/Button03.png);
+  background-repeat: no-repeat;
+ 
+} 
+*/
+
+.myButton-280-60 {
+  width: 280px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(img/Button03/Button_280_60.png);
+  background-repeat: no-repeat;
+  
+}
+
+
+.myButton-280-120 {
+  width: 280px;
+  height: 120px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(img/Button03/Button_280_120.png);
+  background-repeat: no-repeat;
+  
+}
+
+
+
+.myButton-100-80 {
+  width: 100px;
+  height: 80px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(img/Button03/Button_100_80.png);
+  background-repeat: no-repeat;
+  
+  
+}
+
+
+.myPad-140-140 {
+  width: 140px;
+  height: 140px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(img/Button03/Pad_140_140.png);
+  background-repeat: no-repeat;
+  
+}

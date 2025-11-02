@@ -1,0 +1,7 @@
+Pagina Setlist
+Trovare un metodo per mantenere in "memoria" la selezione della setlist 
+corrente, ho sapere l'attuale selezionata ( verificare OSC gig ..)
+
+Quando viene selezionata la vista rackspace non si popolano le parti
+Anche se poi dalla lista si seleziona la prima voce. Dalla seconda in poi ad ogni cambiamento
+funziona
