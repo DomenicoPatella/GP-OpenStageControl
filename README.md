@@ -94,12 +94,13 @@ La struttura del repository è la seguente:
 
 3. **Configurazione**
    -
-   - **send**  IP:PORT  parametri del servere IP e PORT  , dipende dove è localizzato il server.
+   - **send**  IP:PORT  parametri del server
      In questo esempio il server è eseguito nello stesso computer dove è in esecuzione GiG performer, quindi utilizzo indirizzo Ip loopback
      
    - **port** Porta del server Open Stage Control ( GiG Performer Listenning Port) 
-   - **theme** percorsi dei temi personalizzati. 
-     Esempio 
+   - **theme** percorsi dei temi personalizzati.
+     
+     Inserire i seguenti stili per usare il template personalizzato 
      ```
      C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\my_theme.css 
      C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\ace-tm.css
@@ -107,7 +108,7 @@ La struttura del repository è la seguente:
      C:\Users\domep\Documents\GitHub\GP-OpenStageControl\assets\themes\widget.css     ```
 
 **Nota**
-Nel caso di più file devono essere inseriti in un unica riga con un spazion di delimitazione 
+I file devono essere inseriti in un unica riga con un spazio di delimitazione 
 
 4. **Carica un template**:
    - Vai su **Load**
@@ -117,20 +118,19 @@ Nel caso di più file devono essere inseriti in un unica riga con un spazion di 
 5. **custom-module**
    - Vai su **Load**
    - Seleziona il file `setlist.js` presenti in `/Modules`
-  
-   
+     
 6. **osc-port**
    - Porta di ricezione messaggi OSC   (Remote Client Port)
+   
+7. **Avvio del server**  
+   - Per avviare il server usare il tasto freccia in alto a sinistra o premere F5
+   - Ci sono alcune opzioni presenti nel menù per configurare l'avvio indicate nel menù Launcher
 
-7.**Avvio del server**
-Per avviare il server usare il tasto freccia in alto a sinistra o premere F5
-Ci sono alcune opzioni presenti nel menù per configurare l'avvio indicate nel menù Launcher
-<img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/b82a5bac-ba18-4987-a661-25355cbb752b" />
+	<img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/b82a5bac-ba18-4987-a661-25355cbb752b" />
 
-8. **Modalità di visualizzazione**
-Si può decidere di avviare il server senza visualizzazione 
-  - impostazione **no-gui** abilita il "browser" interno di open stage
-  - Visualizzare in fullscreen impostazione **fullscreen**
+9. **Modalità di visualizzazione**
+   - impostazione **no-gui** abilita il "browser" interno di open stage
+   - Visualizzare in fullscreen impostazione **fullscreen**
 
 Si può visualzziare il template da un browser esterno con l'indirizzo
 http://127.0.0.1:8080/
@@ -142,10 +142,8 @@ Per dettagli ed altri impostazioni si può accceder alla documentazione localmen
 
 <img width="940" height="311" alt="image" src="https://github.com/user-attachments/assets/5d32e140-f959-474c-9aeb-ecb36fb445e6" />
 
-**Nota**
-Sia nella vista configurazione e modalità 
 
-Oppure alle risorse ufficiali del progetto
+Risorse ufficiali del progetto
 **Open Stage Control**  
 <img width="50" height="50" alt="image" src="https://github.com/user-attachments/assets/af59a415-e761-4f08-ab43-068c2fd5a88b" />
 
@@ -167,9 +165,9 @@ Esempio di configurazione
 
 <img width="669" height="245" alt="image" src="https://github.com/user-attachments/assets/674b2291-a22d-482f-82d3-99c0b41a167a" />
 
-Nella risorsa  \GPTemplate\Control_Board.gig  c'è un file completo per testare la soluzione 
+> Nella risorsa  \GPTemplate\Control_Board.gig c'è un file completo per testare la soluzione 
   
-Lo script in `/GPscript` deve essere importato in Gig Performer come **Helper Function**, per generare automaticamente liste dinamiche (ad esempio l’elenco dei Rackspaces), utilizzabili nei controlli lista di Open Stage Control.
+Lo script in `/GPscript` deve essere importato in Gig Performer come **Helper Function**, per generare automaticamente la lista dinamica dei rackspaces, utilizzabili nel controllo lista di Open Stage Control.
  ```
 /******************************************************
 //
@@ -215,8 +213,10 @@ Il file `/Modules/setlist.js` contiene tutte le funzioni necessarie a:
 - Sincronizzare dati OSC tra server e client
 - Identificare **IP** e **porta** dei client connessi
 - Gestire comandi in ingresso e aggiornare i controlli dell’interfaccia
+- Generare un immagine cover ottenuta con in nome del'artista
+  > Esempio:  [COVER] Request: https://itunes.apple.com/search?term=Kiss&entity=musicTrack&limit=1
 
-Il modulo può essere caricato tramite la sezione **Custom Module** nelle impostazioni di Open Stage Control.
+Il modulo deve essere caricato tramite la sezione **Custom Module** nelle impostazioni di Open Stage Control.
 
 ---
 
@@ -229,7 +229,7 @@ I file CSS inclusi in `/assets/themes` permettono di personalizzare completament
 ## Requisiti
 
 - **Gig Performer 4 o successivo**  
-- **Open Stage Control 1.19+**  
+- **Open Stage Control 1.29+**  
 - **Connessione locale** (Wi-Fi o Ethernet)
 - (Facoltativo) **Node.js** se si desidera avviare O.S.C. da terminale
 
@@ -240,14 +240,6 @@ I file CSS inclusi in `/assets/themes` permettono di personalizzare completament
 - Usa il template `Template_full_r1` per test e setup completi.  
 - Il template `Template_tiny_r1` è ideale per schermi da 5” come i display Raspberry Pi.  
 - Il `Template_Portrait_r1` è ottimizzato per smartphone, utile come controllo remoto rapido.
-
----
-
-## 🧑‍💻 Autore
-
-**Domenico Patella**  
-🎧 Creatore di template per performance live e sviluppatore di strumenti per Open Stage Control e Gig Performer.  
-YouTube: [STRANGER MIX](https://www.youtube.com/@strangermix)
 
 ---
 
