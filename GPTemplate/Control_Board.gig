@@ -47,7 +47,7 @@ End
     <PROCESSORSTATE_OUT handle="" gpscript="0" osc="0" x="0.097412109375" y="0.21435546875">223.VMjLgXM....OPwTUGkjSSQUPTUDHig1WvziHw3BLh.Ra0QWYeMFZeASOh.iHfLFZeESOhDiKvHBHsUGck80Xn8UL8HBLh.xXn8kL8HRLt.iHfzVczU1Wig1WxziHvHBHig1WyziHw3BLh.Ra0QWYeMFZeMSOh.iHfLFZeQSOhDiKvHBHsUGck80Xn8EM8HBLh.xXn8UM8HRLt.iHfzVczU1Wig1W0ziHvHBHig1W1ziHw3BLh.Ra0QWYeMFZeYSOh.iHfLFZecSOhDiKvHBHsUGck80Xn80M8HBLh7hO..</PROCESSORSTATE_OUT>
     <PROCESSOR id="4" bypass="0" bypassSmoothing="0" prop_str_nodeName="To Rackspaces"
                prop_dbl_x="0.16560059785842895508" prop_dbl_y="0.20703125000000000000"
-               prop_int_MaxInputPins="256" prop_int_MaxOutputPins="256" cmp="1">
+               cmp="1">
       <PLUGIN name="To Rackspaces" format="Internal" category="Global" manufacturer="Deskew Technologies, LLC"
               version="1.0" file="1010970" uid="f6d1a" isInstrument="0" fileTime="0"
               infoUpdateTime="0" numInputs="6" numOutputs="0" isShell="0" isEnabled="1"
@@ -56,7 +56,7 @@ End
     </PROCESSOR>
     <PROCESSOR id="5" bypass="0" bypassSmoothing="0" prop_str_nodeName="From Rackspaces"
                prop_dbl_x="0.02922363393008708954" prop_dbl_y="0.01464843750000000000"
-               prop_int_MaxInputPins="256" prop_int_MaxOutputPins="256" cmp="1">
+               cmp="1">
       <PLUGIN name="From Rackspaces" format="Internal" category="Global" manufacturer="Deskew Technologies, LLC"
               version="1.0" file="10104242" uid="9a2db2" isInstrument="0" fileTime="0"
               infoUpdateTime="0" numInputs="0" numOutputs="6" isShell="0" isEnabled="1"
