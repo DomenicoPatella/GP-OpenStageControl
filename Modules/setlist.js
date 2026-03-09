@@ -100,62 +100,97 @@ module.exports = {
       return { address, args, host, port };
     }
 
-    // --- SETLIST BUFFERING --------------------------------------------------
+// --- SETLIST BUFFERING --------------------------------------------------
     if (address === '/SetListsStart') {
       this.setlistBuffer = [];
       return { address, args, host, port };
     }
-		
-	if (address === '/SetListName') {
-      var idx = valOf(args[0]);
-      var name = valOf(args[1]);
-      if (!this.setlistBuffer) this.setlistBuffer = [];
+
+    // Formato vecchio: /SetListName con args [idx, name]
+    // Formato nuovo:  /SetListName0 con args 'name'
+    if (address === '/SetListName' || address.indexOf('/SetListName') === 0) {
+      var idx, name;
+
+    if (address === '/SetListName') {
+      idx = Array.isArray(args) ? valOf(args[0]) : undefined;
+      name = Array.isArray(args) ? valOf(args[1]) : undefined;
+    } else {
+      idx = parseInt(address.replace('/SetListName', ''), 10);
+      name = Array.isArray(args) ? valOf(args[0]) : valOf(args);
+    }
+
+    if (!this.setlistBuffer) this.setlistBuffer = [];
+    if (!isNaN(idx)) {
       this.setlistBuffer[idx] = name;
-      console.log("[SETLIST] Name:", name);
-      return { address, args, host, port };
-    }
-	
-	if (address === '/SetListsEnd') {
-      // Normalize buffer: replace undefined slots with empty strings
-      var values = (this.setlistBuffer || []).map(function (x) { return x === undefined ? "" : x; });
-
-      // Push options into a dropdown (widget should bind options to OSC{/setlists/options})
-      receive('/setlists/options', ...values);
-
-      // Optionally set the initially selected value to the first item
-      if (values.length > 0) receive('/setlists/value', values[0]);
-
-      console.log("[SETLIST] Updated:", values);
-      return { address, args, host, port };
+      console.log("[SETLIST] Name:", idx, name);
+    } else {
+      console.log("[SETLIST] Invalid index for address:", address, "args:", args);
     }
 
-    // --- SONGLIST BUFFERING -------------------------------------------------
+    return { address, args, host, port };
+}
+
+if (address === '/SetListsEnd') {
+  var buffer = this.setlistBuffer || [];
+  var values = [];
+
+  for (var i = 0; i < buffer.length; i++) {
+    values.push(buffer[i] === undefined ? "" : buffer[i]);
+  }
+
+  receive('/setlists/options', ...values);
+
+  if (values.length > 0) {
+    receive('/setlists/value', values[0]);
+  }
+
+  console.log("[SETLIST] Updated:", values);
+  return { address, args, host, port };
+}
+
+   // --- SONGLIST BUFFERING -------------------------------------------------
     if (address === '/SongListStart') {
       this.setSongBuffer = [];
       return { address, args, host, port };
     }
 
-    if (address === '/SongName') {
-      var idx = valOf(args[0]);
-      var name = valOf(args[1]);
+    if (address === '/SongName' || address.indexOf('/SongName') === 0) {
+      var idx = NaN;
+      var name = "";
+
+      if (address === '/SongName') {
+        if (Array.isArray(args)) {
+          idx = parseInt(valOf(args[0]), 10);
+          name = valOf(args[1]);
+        }
+      } else {
+        idx = parseInt(address.substring('/SongName'.length), 10);
+        name = Array.isArray(args) ? valOf(args[0]) : valOf(args);
+      }
+
       if (!this.setSongBuffer) this.setSongBuffer = [];
-      this.setSongBuffer[idx] = name;
-      console.log("[SONG] Name:", name);
+
+      if (!isNaN(idx)) {
+        this.setSongBuffer[idx] = name;
+        console.log("[SONG] Name:", idx, name);
+      }
+
       return { address, args, host, port };
     }
 
     if (address === '/SongListEnd') {
-      var values = (this.setSongBuffer || []).map(function (x) { return x === undefined ? "" : x; });
+      var values = (this.setSongBuffer || []).map(function(x) {
+        return x === undefined ? "" : x;
+      });
 
-      // Push options into a dropdown (widget should bind options to OSC{/songlist/options})
-	  receive('/songlist/options', ...values);
-      receive('/songlist/count', 1);
+      receive('/songlist/options', ...values);
+      receive('/songlist/count', values.length);
 
       if (values.length > 0) receive('/songlist/value', values[0]);
 
       console.log("[SONGLIST] Updated:", values);
       return { address, args, host, port };
-    }
+}
 
     // --- RACKLIST BUFFERING -------------------------------------------------
     if (address === '/RackspaceListStart') {
